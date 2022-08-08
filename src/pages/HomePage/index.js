@@ -1,5 +1,9 @@
 const HomePage = () => {
-  return <></>;
+  return (
+    <>
+      <div>hfidhfjksdhbvjkfsbvbjbfvji brfuivbirufbv</div>
+    </>
+  );
 };
 
 export default HomePage;
