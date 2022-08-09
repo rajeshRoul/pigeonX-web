@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
 
 const AuthWrapper = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const location = useLocation();
 
-  return <>{isLoggedIn ? { children } : <div></div>}</>;
+  if (isLoggedIn) {
+    return children;
+  }
+  return <Navigate to={"/user-onboard"} replace state={{ from: location }} />;
 };
 
 export default AuthWrapper;
