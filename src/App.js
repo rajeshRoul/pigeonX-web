@@ -1,12 +1,23 @@
+import { Box, createTheme, styled, ThemeProvider } from "@mui/material";
+import { appTheme } from "config/theme/appTheme";
 import Router from "routes";
-import "./App.css";
 import "./config/theme/fonts.css";
 
+const Container = styled(Box)(({ theme }) => ({
+  minHeight: "100vh",
+  width: "100vw",
+  backgroundColor: theme.palette.background.main,
+}));
+
 function App() {
+  const currentTheme = createTheme(appTheme);
+
   return (
-    <div className="App">
-      <Router />
-    </div>
+    <ThemeProvider theme={currentTheme}>
+      <Container>
+        <Router />
+      </Container>
+    </ThemeProvider>
   );
 }
 
