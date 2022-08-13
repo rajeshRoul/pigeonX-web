@@ -1,6 +1,8 @@
 import { Box, Paper, styled, Typography } from "@mui/material";
 import AppDivider from "components/AppDivider";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 
@@ -23,6 +25,12 @@ const StyledContainer = styled(Box)(({ theme }) => ({
 
 const Authentication = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const location = useLocation();
+
+  if (isLoggedIn) {
+    return <Navigate to={"/home"} replace state={{ from: location }} />;
+  }
 
   return (
     <StyledContainer>

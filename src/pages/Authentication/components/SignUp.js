@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { Formik, ErrorMessage } from "formik";
 import { useState } from "react";
+import Server from "ServerConnect";
 import valSchema from "utils/formikValidations";
 
 const SignUp = ({ setIsLoggingIn }) => {
@@ -30,8 +31,11 @@ const SignUp = ({ setIsLoggingIn }) => {
     setIsLoggingIn(true);
   };
 
-  const logInUser = (userData) => {
-    console.log({ userData });
+  const SignUpUser = async (userData) => {
+    const res = await Server.post.signUpUser(userData);
+    if (res.success) {
+      setIsLoggingIn(true);
+    }
   };
 
   return (
@@ -42,7 +46,7 @@ const SignUp = ({ setIsLoggingIn }) => {
         password: "",
       }}
       validationSchema={valSchema.signUp}
-      onSubmit={logInUser}
+      onSubmit={SignUpUser}
     >
       {(formik) => (
         <form onSubmit={formik.handleSubmit}>
