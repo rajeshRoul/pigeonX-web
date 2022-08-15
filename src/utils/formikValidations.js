@@ -22,6 +22,9 @@ const valSchema = {
       ),
     password: yup.string().required("Password is Required"),
   }),
+  createPost: yup.object({
+    postText: yup.string().required("Name is Required"),
+  }),
 };
 
 export default valSchema;

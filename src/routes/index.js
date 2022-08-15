@@ -13,7 +13,12 @@ const Router = () => {
           path="/user-onboard"
           element={<Authentication />}
         />
-        <Route exact path="/" element={<Navigate to="/home" replace />} />
+        <Route
+          key="Route-base-home"
+          exact
+          path="/"
+          element={<Navigate to="/home" replace />}
+        />
         {routes.map((route, index) => (
           <Route
             key={`Route-${route.path}-${index}`}

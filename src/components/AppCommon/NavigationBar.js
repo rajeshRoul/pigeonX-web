@@ -10,7 +10,7 @@ const Container = styled(Box)(({ theme }) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin: "0px 5px",
+    margin: "0px 10px",
     cursor: "pointer",
   },
   "& .navItem.active, .navItem:hover": {
@@ -62,7 +62,7 @@ const navLinks = [
   },
   {
     icon: <AddBoxRoundedIcon />,
-    link: "/create/post",
+    link: "/create-post",
     name: "Create Post",
   },
 ];
