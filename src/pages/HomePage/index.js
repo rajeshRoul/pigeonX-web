@@ -1,8 +1,13 @@
+import DefaultHeader from "components/AppCommon/Headers/DefaultHeader";
+import LayoutHorizontalSplit from "layouts/LayoutHorizontalSplit";
+
 const HomePage = () => {
   return (
-    <>
-      <div>hfidhfjksdhbvjkfsbvbjbfvji brfuivbirufbv</div>
-    </>
+    <LayoutHorizontalSplit header={<DefaultHeader />}>
+      <div
+        style={{ backgroundColor: "blue", height: 200, width: "100%" }}
+      ></div>
+    </LayoutHorizontalSplit>
   );
 };
 

@@ -10,6 +10,7 @@ export const appTheme = {
     },
     background: {
       main: "#FFFFFF",
+      light: "#C4C4C4",
     },
     text: {
       primary: "#212121",

@@ -1,7 +1,7 @@
 import { getReqHandler as Handler } from "ServerConnect/utils/handlers";
 
 const getRequests = {
-  getCurrentUserProfile: Handler(""),
+  currentUserProfile: Handler("/user/profile"),
 };
 
 export default getRequests;

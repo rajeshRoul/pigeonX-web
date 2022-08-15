@@ -1,6 +1,6 @@
 import Authentication from "pages/Authentication";
 import NotFound from "pages/NotFound";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AuthWrapper from "wrappers/AuthWrapper";
 import routes from "./routes";
 
@@ -13,6 +13,7 @@ const Router = () => {
           path="/user-onboard"
           element={<Authentication />}
         />
+        <Route exact path="/" element={<Navigate to="/home" replace />} />
         {routes.map((route, index) => (
           <Route
             key={`Route-${route.path}-${index}`}
