@@ -12,7 +12,7 @@ const Container = styled(Box)(() => ({
 }));
 
 const HeaderProfile = () => {
-  const [anchorEl, setAnchorEl] = useState();
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -43,7 +43,7 @@ const HeaderProfile = () => {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          "aria-labelledby": "post action buttons",
         }}
       >
         <MenuItem onClick={onProfileClick}>Profile</MenuItem>

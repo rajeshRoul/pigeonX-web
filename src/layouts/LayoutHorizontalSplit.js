@@ -10,15 +10,11 @@ const Container = styled(Box)(({ theme }) => ({
     width: "100%",
     "& .leftPaneLayout, .rightPaneLayout": {
       width: "15vw",
-      minWidth: "300px",
-      flexShrink: 0,
+      minWidth: "250px",
       minHeight: "calc(100vh - 50px)",
     },
     "& .mainContentLayout": {
       flexGrow: 1,
-      flexShrink: 0,
-      borderLeft: `1px solid ${theme.palette.divider.main}`,
-      borderRight: `1px solid ${theme.palette.divider.main}`,
       minHeight: "calc(100vh - 50px)",
       padding: 30,
     },

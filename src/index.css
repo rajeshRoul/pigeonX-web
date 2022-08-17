@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+button.MuiButtonBase-root.MuiButton-root {
+  text-transform: capitalize;
+}
+
 body {
   margin: 0;
   padding: 0;
