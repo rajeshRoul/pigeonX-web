@@ -30,13 +30,13 @@ const CommentContainer = styled(Card)(() => ({
   },
 }));
 
-const CommentTemplate = ({ data = {} }) => {
+const CommentTemplate = ({ comment = {} }) => {
   const handleShowOptions = () => {};
 
   return (
     <Container>
-      {data?.user?.profileImg ? (
-        <img src={data?.user?.profileImg} alt="" className="profileImg" />
+      {comment?.user?.profileImg ? (
+        <img src={comment?.user?.profileImg} alt="" className="profileImg" />
       ) : (
         <AccountCircleRoundedIcon className="userProfileImg" />
       )}
@@ -44,10 +44,10 @@ const CommentTemplate = ({ data = {} }) => {
         <Box className="commentHeader">
           <Box className="postDetails">
             <Typography variant="body1SemiBold">
-              {data?.user?.full_name ?? "-"}
+              {comment?.user?.full_name ?? "-"}
             </Typography>
             <Typography variant="caption4">
-              {timestampToMinTime(data?.createdAt)}
+              {timestampToMinTime(comment?.createdAt)}
             </Typography>
           </Box>
           <span role={"button"} onClick={handleShowOptions}>
@@ -56,7 +56,7 @@ const CommentTemplate = ({ data = {} }) => {
             </IconButton>
           </span>
         </Box>
-        <Box className="content">{data?.postText ?? "-"}</Box>
+        <Box className="content">{comment?.commentText ?? "-"}</Box>
       </CommentContainer>
     </Container>
   );

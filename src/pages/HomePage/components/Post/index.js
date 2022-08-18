@@ -14,13 +14,27 @@ import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
 import InsertCommentRoundedIcon from "@mui/icons-material/InsertCommentRounded";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Comments from "../Comments";
 
-const Container = styled(Card)(() => ({
+const Container = styled(Card)(({ theme }) => ({
   width: "100%",
   padding: 16,
   borderRadius: 10,
+  "& .content": {
+    marginBottom: 20,
+  },
+  "& .commentCountCtr": {
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end",
+    "& span": {
+      cursor: "pointer",
+      "&:hover": {
+        color: theme.palette.primary.main,
+      },
+    },
+  },
 }));
 
 const Header = styled(Box)(() => ({
@@ -52,7 +66,6 @@ const Footer = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   boxSizing: "border-box",
-  marginTop: 20,
   paddingTop: 10,
   "& .footerItem": {
     display: "flex",
@@ -73,6 +86,8 @@ const Footer = styled(Box)(({ theme }) => ({
 const Post = ({ data }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState([]);
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -83,6 +98,10 @@ const Post = ({ data }) => {
   };
 
   const onDeletePost = () => {};
+
+  useEffect(() => {
+    setComments(data.comments);
+  }, [data]);
 
   return (
     <Container elevation={3}>
@@ -109,6 +128,13 @@ const Post = ({ data }) => {
         </span>
       </Header>
       <Box className="content">{data.postText}</Box>
+      <Box className="commentCountCtr">
+        {comments?.length ? (
+          <Typography variant="caption2" onClick={() => setShowComments(true)}>
+            {`${comments.length} comment${comments.length > 1 ? "s" : ""}`}{" "}
+          </Typography>
+        ) : null}
+      </Box>
       <Footer>
         <Box className="footerItem">
           <ThumbUpRoundedIcon />
@@ -127,7 +153,13 @@ const Post = ({ data }) => {
           <Typography variant="body1Regular">Send</Typography>
         </Box>
       </Footer>
-      {showComments ? <Comments /> : null}
+      {showComments ? (
+        <Comments
+          postId={data._id}
+          comments={comments}
+          setComments={setComments}
+        />
+      ) : null}
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

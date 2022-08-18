@@ -1,5 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import Server from "ServerConnect";
 import styled from "styled-components";
 import CommentTemplate from "./CommentTemplate";
 
@@ -20,10 +22,29 @@ const CommentForm = styled(Box)(() => ({
   },
 }));
 
-const Comments = () => {
+const Comments = ({ postId, comments, setComments }) => {
   const [comment, setComment] = useState("");
+  const user = useSelector((store) => store.user.data);
 
-  const handlePostComment = () => {};
+  const handlePostComment = async (e) => {
+    e.preventDefault();
+    const res = await Server.post.createComment({
+      post: postId,
+      commentText: comment,
+    });
+    if (res.success) {
+      setComment("");
+      setComments((prev) => [
+        ...prev,
+        {
+          ...res.data,
+          user: {
+            ...(user ?? {}),
+          },
+        },
+      ]);
+    }
+  };
 
   return (
     <Container>
@@ -43,7 +64,9 @@ const Comments = () => {
           </Button>
         </CommentForm>
       </form>
-      <CommentTemplate />
+      {comments?.map((comment) => (
+        <CommentTemplate key={comment._id} comment={comment} />
+      ))}
     </Container>
   );
 };

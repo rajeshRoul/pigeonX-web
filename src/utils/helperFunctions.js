@@ -10,7 +10,7 @@ export const timestampToMinTime = (timestamp) => {
   const diffInSeconds = (currentDate - givenDate) / 1000;
   let time = "";
   if (diffInSeconds < 60) {
-    return `${diffInSeconds}s`;
+    return `${Math.round(diffInSeconds)}s`;
   }
   if (diffInSeconds < 3600) {
     time = Math.round(diffInSeconds / 60);
