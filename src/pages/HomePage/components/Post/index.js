@@ -16,6 +16,7 @@ import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useEffect, useState } from "react";
 import Comments from "../Comments";
+import Server from "ServerConnect";
 
 const Container = styled(Card)(({ theme }) => ({
   width: "100%",
@@ -83,12 +84,11 @@ const Footer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Post = ({ data }) => {
+const Post = ({ data, setPosts, index }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
-
-  const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -97,10 +97,19 @@ const Post = ({ data }) => {
     setAnchorEl(null);
   };
 
-  const onDeletePost = () => {};
+  const onDeletePost = async () => {
+    const res = await Server.delete.post({}, [data._id]);
+    if (res.success) {
+      setPosts((prev) => {
+        let newPosts = [...prev];
+        newPosts.splice(index, 1);
+        return newPosts;
+      });
+    }
+  };
 
   useEffect(() => {
-    setComments(data.comments);
+    setComments(data?.comments ?? []);
   }, [data]);
 
   return (
@@ -170,7 +179,7 @@ const Post = ({ data }) => {
         }}
       >
         <MenuItem onClick={onDeletePost}>Delete Post</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem>Report</MenuItem>
       </Menu>
     </Container>
   );

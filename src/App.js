@@ -5,8 +5,10 @@ import "./config/theme/fonts.css";
 
 const Container = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
-  width: "100vw",
+  width: "100%",
   backgroundColor: theme.palette.background.main,
+  display: "flex",
+  justifyContent: "center",
 }));
 
 function App() {

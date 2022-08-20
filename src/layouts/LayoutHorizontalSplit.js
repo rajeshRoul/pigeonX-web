@@ -3,14 +3,15 @@ import { Box, styled } from "@mui/material";
 const Container = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
   width: "100%",
+  maxWidth: 1280,
   display: "flex",
   flexDirection: "column",
   "& .layoutContent": {
     display: "flex",
     width: "100%",
     "& .leftPaneLayout, .rightPaneLayout": {
-      width: "15vw",
-      minWidth: "250px",
+      width: "20%",
+      minWidth: "300px",
       minHeight: "calc(100vh - 50px)",
     },
     "& .mainContentLayout": {

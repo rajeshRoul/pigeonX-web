@@ -11,7 +11,12 @@ const HomePage = () => {
   const fetchPosts = async () => {
     const res = await Server.get.allPosts();
     if (res.success) {
-      setPosts(res.data);
+      setPosts(
+        res.data.map((post) => ({
+          ...post,
+          comments: post.comments.reverse(),
+        }))
+      );
     }
   };
 
@@ -22,9 +27,9 @@ const HomePage = () => {
   return (
     <LayoutHorizontalSplit header={<DefaultHeader />}>
       <Grid container spacing={3}>
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <Grid key={post._id} item xs={12}>
-            <Post data={post} />
+            <Post data={post} setPosts={setPosts} index={index} />
           </Grid>
         ))}
       </Grid>

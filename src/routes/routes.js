@@ -1,4 +1,5 @@
 import CreatePost from "pages/CreatePost";
+import FindFriends from "pages/Friends";
 import HomePage from "pages/HomePage";
 import NotFound from "pages/NotFound";
 
@@ -14,6 +15,10 @@ const routes = [
   {
     path: "/create-post",
     component: CreatePost,
+  },
+  {
+    path: "/find-friends",
+    component: FindFriends,
   },
 ];
 

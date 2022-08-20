@@ -7,7 +7,6 @@ import Server from "ServerConnect";
 
 const CreatePost = () => {
   const navigate = useNavigate();
-  console.log("exec create");
   const formik = useFormik({
     initialValues: {
       postText: "",

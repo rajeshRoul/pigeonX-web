@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Server from "ServerConnect";
@@ -7,8 +7,11 @@ import CommentTemplate from "./CommentTemplate";
 
 const Container = styled(Box)(() => ({
   width: "100%",
-  maxHeight: 300,
-  overflowY: "auto",
+  "& .commentsCtr": {
+    width: "100%",
+    maxHeight: 300,
+    overflowY: "auto",
+  },
 }));
 
 const CommentForm = styled(Box)(() => ({
@@ -35,13 +38,13 @@ const Comments = ({ postId, comments, setComments }) => {
     if (res.success) {
       setComment("");
       setComments((prev) => [
-        ...prev,
         {
           ...res.data,
           user: {
             ...(user ?? {}),
           },
         },
+        ...prev,
       ]);
     }
   };
@@ -64,9 +67,19 @@ const Comments = ({ postId, comments, setComments }) => {
           </Button>
         </CommentForm>
       </form>
-      {comments?.map((comment) => (
-        <CommentTemplate key={comment._id} comment={comment} />
-      ))}
+      <Box className="commentsCtr">
+        <Grid container spacing={2}>
+          {comments?.map((comment, index) => (
+            <Grid item xs={12} key={comment._id}>
+              <CommentTemplate
+                comment={comment}
+                setComments={setComments}
+                index={index}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Container>
   );
 };

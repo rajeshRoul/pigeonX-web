@@ -1,6 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled(Box)(({ theme }) => ({
@@ -13,12 +14,20 @@ const Container = styled(Box)(({ theme }) => ({
     margin: "0px 10px",
     cursor: "pointer",
   },
-  "& .navItem.active, .navItem:hover": {
+  "& .navItem.active": {
     "& svg": {
       color: theme.palette.primary.main,
     },
     "& span": {
       color: theme.palette.primary.main,
+    },
+  },
+  "& .navItem:hover": {
+    "& svg": {
+      color: theme.palette.primary.dark,
+    },
+    "& span": {
+      color: theme.palette.primary.dark,
     },
   },
 }));
@@ -64,5 +73,10 @@ const navLinks = [
     icon: <AddBoxRoundedIcon />,
     link: "/create-post",
     name: "Create Post",
+  },
+  {
+    icon: <GroupRoundedIcon />,
+    link: "/find-friends",
+    name: "Find Friends",
   },
 ];
