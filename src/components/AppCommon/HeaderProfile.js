@@ -1,19 +1,28 @@
-import { Box, Menu, MenuItem, styled } from "@mui/material";
+import { Box, Menu, MenuItem, styled, Typography } from "@mui/material";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { useState } from "react";
 import Server from "ServerConnect";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "redux/slices/user";
+import { useNavigate } from "react-router-dom";
 
-const Container = styled(Box)(() => ({
+const Container = styled(Box)(({ theme }) => ({
   "& .imageContainer": {
     cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    "&:hover": {
+      color: theme.palette.primary.main,
+    },
   },
 }));
 
 const HeaderProfile = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { full_name: userName, id } = useSelector((store) => store.user?.data);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -22,7 +31,9 @@ const HeaderProfile = () => {
     setAnchorEl(null);
   };
 
-  const onProfileClick = () => {};
+  const onProfileClick = () => {
+    navigate(`/profile/${id}`);
+  };
 
   const onLogoutClick = async () => {
     const res = await Server.post.logout();
@@ -34,9 +45,10 @@ const HeaderProfile = () => {
 
   return (
     <Container>
-      <span className="imageContainer" onClick={handleClick}>
+      <Box className="imageContainer" onClick={handleClick}>
         <AccountCircleRoundedIcon sx={{ width: "30px", height: "30px" }} />
-      </span>
+        <Typography variant="body1SemiBold">{userName ?? ""}</Typography>
+      </Box>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

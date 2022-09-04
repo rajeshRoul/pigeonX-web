@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 
 const Container = styled(Box)(({ theme }) => ({
-  minHeight: "100vh",
+  minHeight: "100%",
   width: "100%",
   maxWidth: 1280,
   display: "flex",
@@ -12,11 +12,9 @@ const Container = styled(Box)(({ theme }) => ({
     "& .leftPaneLayout, .rightPaneLayout": {
       width: "20%",
       minWidth: "300px",
-      minHeight: "calc(100vh - 50px)",
     },
     "& .mainContentLayout": {
       flexGrow: 1,
-      minHeight: "calc(100vh - 50px)",
       padding: 30,
     },
   },

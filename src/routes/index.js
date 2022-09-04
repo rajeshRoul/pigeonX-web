@@ -1,3 +1,4 @@
+import React from "react";
 import Authentication from "pages/Authentication";
 import NotFound from "pages/NotFound";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -24,9 +25,11 @@ const Router = () => {
             key={`Route-${route.path}-${index}`}
             path={route.path}
             element={
-              <AuthWrapper>
-                <route.component />
-              </AuthWrapper>
+              <React.Suspense fallback={<h1>Loading...</h1>}>
+                <AuthWrapper>
+                  <route.component />
+                </AuthWrapper>
+              </React.Suspense>
             }
           />
         ))}

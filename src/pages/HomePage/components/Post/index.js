@@ -17,6 +17,7 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useEffect, useState } from "react";
 import Comments from "../Comments";
 import Server from "ServerConnect";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled(Card)(({ theme }) => ({
   width: "100%",
@@ -45,6 +46,7 @@ const Header = styled(Box)(() => ({
   alignItems: "flex-start",
   "& .postDetailsCtr": {
     display: "flex",
+    cursor: "pointer",
     justifyContent: "flex-start",
     alignItems: "center",
     "& .profileImg": {
@@ -89,6 +91,7 @@ const Post = ({ data, setPosts, index }) => {
   const open = Boolean(anchorEl);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -108,6 +111,10 @@ const Post = ({ data, setPosts, index }) => {
     }
   };
 
+  const onProfileClick = () => {
+    if (data?.user?._id) navigate(`/profile/${data?.user?._id}`);
+  };
+
   useEffect(() => {
     setComments(data?.comments ?? []);
   }, [data]);
@@ -115,7 +122,7 @@ const Post = ({ data, setPosts, index }) => {
   return (
     <Container elevation={3}>
       <Header>
-        <Box className="postDetailsCtr">
+        <Box className="postDetailsCtr" onClick={onProfileClick}>
           {data?.user?.profileImg ? (
             <img src={data?.user?.profileImg} alt="" className="profileImg" />
           ) : (

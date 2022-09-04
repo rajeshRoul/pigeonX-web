@@ -4,18 +4,26 @@ import HeaderProfile from "../HeaderProfile";
 import NavigationBar from "../NavigationBar";
 
 const Container = styled(Box)(() => ({
-  height: "50px",
+  height: "auto",
   width: "100%",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   padding: "5px 20px",
+  flexWrap: "wrap-reverse",
+  position: "sticky",
+  top: 0,
+  left: 0,
+  right: 0,
+  "& > div": {
+    marginBottom: 15,
+  },
 }));
 
 const DefaultHeader = () => {
   return (
     <Container>
-      <SearchBar style={{ width: 200 }} />
+      <SearchBar style={{ maxWidth: 265, width: "100%" }} />
       <NavigationBar />
       <HeaderProfile />
     </Container>

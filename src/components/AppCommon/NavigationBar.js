@@ -13,6 +13,7 @@ const Container = styled(Box)(({ theme }) => ({
     alignItems: "center",
     margin: "0px 10px",
     cursor: "pointer",
+    flexShrink: 0,
   },
   "& .navItem.active": {
     "& svg": {

@@ -1,7 +1,9 @@
-import CreatePost from "pages/CreatePost";
-import FindFriends from "pages/Friends";
-import HomePage from "pages/HomePage";
-import NotFound from "pages/NotFound";
+import React from "react";
+const CreatePost = React.lazy(() => import("pages/CreatePost"));
+const FindFriends = React.lazy(() => import("pages/Friends"));
+const HomePage = React.lazy(() => import("pages/HomePage"));
+const NotFound = React.lazy(() => import("pages/NotFound"));
+const Profile = React.lazy(() => import("pages/Profile"));
 
 const routes = [
   {
@@ -19,6 +21,10 @@ const routes = [
   {
     path: "/find-friends",
     component: FindFriends,
+  },
+  {
+    path: "/profile/:id",
+    component: Profile,
   },
 ];
 
