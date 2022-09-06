@@ -4,6 +4,7 @@ const FindFriends = React.lazy(() => import("pages/Friends"));
 const HomePage = React.lazy(() => import("pages/HomePage"));
 const NotFound = React.lazy(() => import("pages/NotFound"));
 const Profile = React.lazy(() => import("pages/Profile"));
+const EditProfile = React.lazy(() => import("pages/EditProfile"));
 
 const routes = [
   {
@@ -23,8 +24,12 @@ const routes = [
     component: FindFriends,
   },
   {
-    path: "/profile/:id",
+    path: "/profile/view/:id",
     component: Profile,
+  },
+  {
+    path: "/profile/edit/:id",
+    component: EditProfile,
   },
 ];
 

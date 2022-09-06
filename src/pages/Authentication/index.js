@@ -24,7 +24,7 @@ const StyledContainer = styled(Box)(({ theme }) => ({
 }));
 
 const Authentication = () => {
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const location = useLocation();
 

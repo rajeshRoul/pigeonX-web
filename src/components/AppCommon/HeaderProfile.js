@@ -31,8 +31,12 @@ const HeaderProfile = () => {
     setAnchorEl(null);
   };
 
-  const onProfileClick = () => {
-    navigate(`/profile/${id}`);
+  const onProfileViewClick = () => {
+    navigate(`/profile/view/${id}`);
+  };
+
+  const onProfileEditClick = () => {
+    navigate(`/profile/edit/${id}`);
   };
 
   const onLogoutClick = async () => {
@@ -58,7 +62,8 @@ const HeaderProfile = () => {
           "aria-labelledby": "post action buttons",
         }}
       >
-        <MenuItem onClick={onProfileClick}>Profile</MenuItem>
+        <MenuItem onClick={onProfileViewClick}>View Profile</MenuItem>
+        <MenuItem onClick={onProfileEditClick}>Edit Profile</MenuItem>
         <MenuItem onClick={onLogoutClick}>Logout</MenuItem>
       </Menu>
     </Container>

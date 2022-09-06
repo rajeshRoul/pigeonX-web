@@ -112,7 +112,7 @@ const Post = ({ data, setPosts, index }) => {
   };
 
   const onProfileClick = () => {
-    if (data?.user?._id) navigate(`/profile/${data?.user?._id}`);
+    if (data?.user?._id) navigate(`/profile/view/${data?.user?._id}`);
   };
 
   useEffect(() => {
